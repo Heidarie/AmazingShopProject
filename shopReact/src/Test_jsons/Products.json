@@ -1,0 +1,29 @@
+[{
+    "Product_id":"1",
+    "Name":"Item1",
+    "Price":"12",
+    "Description":"Some description... ",
+    "Amount":"12",
+    "Photo": "Placeholder"
+  },
+  {   "Product_id":"2",
+      "Name":"Item2",
+      "Price":"12",
+      "Description":"Some description... ",
+      "Amount":"62",
+      "Photo": "Placeholder"
+  },
+  {   "Product_id":"3",
+      "Name":"Item2",
+      "Price":"12",
+      "Description":"Some description... ",
+      "Amount":"62",
+      "Photo": "Placeholder"
+  },
+  {   "Product_id":"4",
+      "Name":"Item2",
+      "Price":"12",
+      "Description":"Some description... ",
+      "Amount":"62",
+      "Photo": "Placeholder"
+  }]

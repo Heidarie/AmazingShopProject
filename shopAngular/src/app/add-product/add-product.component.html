@@ -1,0 +1,80 @@
+<p>add-product works!</p>
+<div class="ProductBox">
+    <div class="ProductForm">
+      <Form >
+        <h2>Typ przedmiotu</h2>
+      <select id="type" class='form-control' [(ngModel)]="itemType">
+        <option value="New">Nowy</option>
+        <option value="Exsisting">Istniejący</option>
+      </select>
+      </Form>
+      <div *ngIf="itemType=='New'">
+        <div class='form-Group' size="lg" >
+            <label>Nazwa</label>
+            <input  class="form-control"
+              id="name"
+              type="text"
+              [(ngModel)]="name"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Opis</label>
+            <input  class="form-control"
+              id="description"
+              type="text"
+              [(ngModel)]="description"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Cena</label>
+            <input  class="form-control"
+              id="price"
+              type="text"
+              [(ngModel)]="price"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Ilość</label>
+            <input  class="form-control" min = '1' max='999'
+              id="amount"
+              type="number"
+              [(ngModel)]="amount"
+            />
+            </div>
+            <div class='form-Group' size="lg" >
+                <label>Zdjęcie</label>
+                <input  class="form-control"
+                  id="photo"
+                  type="file"
+                  [(ngModel)]="photo"
+                />
+                </div>
+                <div class='form-Group' size="lg" >
+                <label>Kategoria</label>
+            <select class='form-control' id="categoryId" [(ngModel)]="category">
+
+                <option *ngFor="let cat of categories"  value={{cat.Categories_id}}>{{cat.Name}}</option>
+              </select>
+              </div>
+
+      </div>
+      <div *ngIf="itemType=='Exsisting'">
+        <select class='form-control' id="productId">
+          <option>Wybierz produkt</option>
+          <option *ngFor="let x of products" value={{x.Product_id}}>{{x.Name}}</option>
+        </select>
+        <div class='form-Group' size="lg" >
+            <label>Ilość</label>
+            <input  class="form-control" min = '1' max='999'
+              id="amount"
+              type="number"
+              [(ngModel)]="amount"
+            />
+            </div>
+      </div>
+      <button  size="lg" class="btn btn-primary" type="submit">
+        Dodaj
+      </button>
+    </div>
+    
+</div>

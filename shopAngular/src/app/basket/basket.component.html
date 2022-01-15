@@ -1,0 +1,104 @@
+<p>basket works!</p>
+<div *ngIf="loading">
+    Loading...
+</div>
+<div *ngIf="!loading">
+  <div *ngIf="empty">Your basket is empty </div>
+  <div *ngIf="!empty">
+    <div *ngIf="display" class='order'>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><p>Zamów</p></h5>
+                <select class="form-select"  [(ngModel)]="deliveryType">
+                    <option value="0">Osobisty</option>
+                    <option value="1">Kurier (za pobraniem)</option>
+                  </select>
+              </div>
+              <div class="modal-body">
+                  <div *ngIf="deliveryType=='0'">
+                    <h2>Odbiór osobisty w punkcie xxx</h2>      
+                </div>
+                <div *ngIf="deliveryType=='1'">
+                    <div class='form-Group' size="lg" >
+                        <label>Ulica</label>
+                        <input  class="form-control"
+                          id="street"
+                          type="text"
+                          [(ngModel)]="street"
+                        />
+                </div>
+                <div class='form-Group' size="lg" >
+                    <label>Numer budynku</label>
+                    <input  class="form-control"
+                      id="houseNumber"
+                      type="text"
+                      [(ngModel)]="houseNumber"
+                    />
+                    </div>
+                    <div class='form-Group' size="lg" >
+                        <label>Kod pocztowy</label>
+                        <input  class="form-control"
+                          id="postal"
+                          type="text"
+                          [(ngModel)]="postal"
+                        /> </div>
+                        <div class='form-Group' size="lg" >
+                            <label>Miasto</label>
+                            <input  class="form-control"
+                              id="city"
+                              type="text"
+                              [(ngModel)]="city"
+                            /></div></div>
+              <div class="modal-footer">
+
+                <button  class="btn btn-primary" (click)="submitOrder()">Zamów</button>
+                <button  class="btn btn-secondary" (click)="setDisplay(false,'')">Anuluj</button>
+              </div>
+   
+          </div>
+    </div>
+</div>
+</div>
+<div class="Basket">
+    <div class="summary">
+       <h2 class="header">Twój koszyk</h2>
+       <div class="sort"><h2 class="categoryHead">Sortuj:</h2>
+        <select class="form-select"  [(ngModel)]="sort">
+          <option value="">Sortuj</option>
+          <option value="0">Cena od najniższej</option>
+          <option value="1">Cena od najwyższej</option>
+        </select>
+       </div>
+       <hr/>
+       <div>
+       <!-- <p><button class="btn btn-primary" (click)="checkAll()"> Zaznacz/Odznacz wszystko </button></p> -->
+         <p><button class="btn btn-primary" (click)="deleteChecked()"> Usuń zanzaczone </button></p>
+        <p>Cena razem: {{getTotalPrice()}} </p>
+        <p><Button class="btn btn-primary" (click)="setDisplay(true,'')"> Zamów </Button></p>
+      </div>
+    </div>
+    <div class="Products"> 
+        <div *ngFor="let product of products"  class="item">
+            <div class='photo'><img src='https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2019/10/pr_2019_10_14_10_21_16_50_04.jpg' class='img-fluid shadow-4' alt='...' /></div>
+            <div class='name'><h2>{{product.name}} Ilość: {{product.amount}}</h2></div>
+            <div class='description'>{{product.description}}</div>
+            <div class="price"><h2>{{product.price * product.amount}} PLN</h2></div>
+            <div class="form-check">
+                <input class="form-check-input" (click)="changeCheck(product.id)" type="checkbox" checked id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                 Wybierz
+                </label>
+            </div>
+    </div>
+    
+ </div>
+
+
+
+
+</div>
+
+
+
+</div>

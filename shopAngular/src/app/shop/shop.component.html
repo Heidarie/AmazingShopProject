@@ -1,0 +1,55 @@
+<div *ngIf="loading">
+    Loading...
+</div>
+<div *ngIf="!loading">
+    <div class="Shop">
+        <div class="sidePanel">
+           <div class="sort"><h2 className="categoryHead">Sort:</h2>
+            <select class="form-select" (change)="changeSort()" [(ngModel)]="sort">
+              <option value="">Sortuj</option>
+              <option value="0">Cena od najniższej</option>
+              <option value="1">Cena od najwyższej</option>
+            </select>
+           </div>
+           <div>
+            <h2 class="categoryHead">Kategorie:</h2>
+            <p  class ="category" *ngFor=" let category of categories">
+               <span class="categoryName" (click)="getCategories(category.id)"> {{category.name}} </span>
+               <span class="amount">{{category.amount}}</span>
+            </p>
+           </div>
+        </div>
+        <div class="Products">
+            <div *ngFor="let product of products" class="product">
+                <div class='photo'><img src='https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2019/10/pr_2019_10_14_10_21_16_50_04.jpg' class='img-fluid shadow-4' alt='...' /></div>
+                <div class='name'><h2>{{ product.name }} </h2></div>
+                <div class='description'>{{product.description}}</div>
+                <div class="price"><h2>{{product.price}} PLN</h2></div>
+                <button class="btn btn-primary"   (click)="setDisplay(true,product)">Dodaj do koszyka</button>
+                </div>
+                </div>
+                         
+</div>
+</div>
+<div class="basket" *ngIf="display">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Dodaj do koszyka - {{displayProduct.name}}</h5>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <p>Cena : {{getDecimalNumber(displayProduct.price)}} PLN</p>
+                <label for="amount">Ilość</label>
+                <input [(ngModel)]="amount" type="number" class="form-control"  min='1'  max="999" id="amount" value="1" >
+              </div>
+        </div>
+        <div class="modal-footer">
+          <div class="totalPrice">{{getDecimalNumber(displayProduct.price * amount)}} PLN</div>
+          <button type="button" class="btn btn-primary" (click)="addToBasket(displayProduct.id)">Dodaj do koszyka</button>
+          <button type="button" class="btn btn-secondary" (click)="setDisplay(false,'')">Anuluj</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>

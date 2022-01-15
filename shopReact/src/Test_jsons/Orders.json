@@ -1,0 +1,23 @@
+[{
+    "Order_id":"1",
+    "Products":[{
+        "Product_id":"2",
+        "Name":"Nazwa",
+        "Price":"12",
+        "Amount":"62"
+    },
+    {
+        "Product_id":"1",
+        "Name":"Nazwa",
+        "Price":"12",
+        "Amount":"62"
+
+    }],
+    "TotalPrice":"1222",
+    "Status":"Status",
+    "DeliveryType":"Personal",
+    "Date":"05-04-2021",
+    "FullUserName": "Imie Nazwisko",
+    "Email":"email@email.com",
+    "PhoneNumber":"123123123"
+}]

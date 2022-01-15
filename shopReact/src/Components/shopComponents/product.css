@@ -1,0 +1,30 @@
+.product{
+    margin: auto;
+    width: 90%;
+    height: 300px;
+    border-bottom:black solid 1px;
+}
+.product:hover{
+    background-color:#DCDCDC;;
+}
+
+.photo{
+    float: left;
+    height: 100%;
+    width: 30%;
+}
+.name{
+    
+      margin-left: 34%;
+      height: 50px;
+}
+.description{
+    margin-left: 32%;
+    height: 100px;
+}
+.price{
+    float:left;
+    height: 50px;
+    margin-left: 2%;
+    width: 30%;
+}

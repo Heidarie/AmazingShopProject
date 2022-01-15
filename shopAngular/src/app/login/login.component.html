@@ -1,0 +1,23 @@
+<div class="LoginBox">
+    <div class="login">
+        <div class='form-Group' size="lg" >
+            <label>Email</label>
+            <input  class="form-control"
+              id="email"
+              type="text"
+              [(ngModel)]="email"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Hasło</label>
+            <input  class="form-control"
+              id="password"
+              type="password"
+              [(ngModel)]="password"
+            />
+        </div>
+        <button  size="lg" (click)="login()" class="btn btn-primary submit" type="submit">
+            Zaloguj
+          </button>
+    </div>
+</div>

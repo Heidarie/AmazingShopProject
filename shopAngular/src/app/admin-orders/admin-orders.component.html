@@ -1,0 +1,32 @@
+<p>admin-orders works!</p>
+<div *ngIf="loading">
+    Loading...
+</div>
+<div *ngIf="!loading">
+    <div class="Shop">
+        <div class="Items">
+            <div class="AdminOrder" *ngFor="let order of orders">
+                <div class='date'><h2>Data zamówienia: {{order.date}} </h2></div>
+                <div class='status'>Stauts: {{order.status}}</div>
+                <div class='cena'>Cena: {{getDecimalNumber(order.orderPrice)}} PLN</div>
+                <ul class="list-group">
+                    
+
+                    <div class="orderedItems">
+                     <div *ngFor="let product of order.products">
+                     <li>{{product.name}} - {{product.price}} PLN, {{product.amount}} sztuk</li>
+                     <div class='status'>
+                     <h3>Zmień status</h3>
+                    
+                     <button class="btn btn-primary" (click)="changeStatus(2,order.orderId)">Wysłane</button> 
+                     <button class="btn btn-primary" (click)="changeStatus(3,order.orderId)">Odebrane</button> 
+                     <button class="btn btn-primary" (click)="changeStatus(4,order.orderId)">Anulowane</button>
+                    </div>
+                     </div>
+                    </div>
+                </ul>
+            </div>
+                </div>
+                         
+</div>
+</div>

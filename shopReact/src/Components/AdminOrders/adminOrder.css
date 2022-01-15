@@ -1,0 +1,11 @@
+.AdminOrder{
+    margin: auto;
+    width: 80%;
+    min-height: 200px;
+    border-bottom:black solid 1px;
+}
+.status{
+    text-align: center;
+    align-items: center;
+    margin-bottom: 2%;
+}

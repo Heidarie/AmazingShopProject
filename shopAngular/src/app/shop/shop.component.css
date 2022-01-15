@@ -1,0 +1,104 @@
+.Shop{
+    width:100%;
+  }
+  .Products{
+      padding-top: 2%;
+      width:50%;
+      margin: auto;
+      max-width: 1000px;
+      background-color:#F8F8FF;
+      -webkit-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      -moz-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+  }
+  .pagination{
+     width:80%;
+     align-content: center;
+     padding-top: 2%;
+     padding-bottom: 2%;
+     float:right;
+  }
+  .sidePanel{
+      margin-left: 6%;
+      float:left;
+      width:15%;
+      height: auto;
+      background-color:#F8F8FF;
+      overflow-y: auto;
+      -webkit-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      -moz-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+  }
+  .categoryHead{
+      text-align: center;
+  }
+  .categoryName{
+      cursor:pointer;
+      text-align: left;
+      margin-left: 5%;
+  }
+  .categoryName:hover{
+      color:#33cc33;
+  }
+  .amount{
+      float:right;
+      margin-right: 5%;
+  }
+  .sort{
+      width: 80%;
+      margin:auto;
+      margin-bottom: 5%;
+  }
+  .product{
+    margin: auto;
+    width: 80%;
+    height: 200px;
+    border-bottom:black solid 1px;
+}
+.product:hover{
+    background-color:#DCDCDC;;
+}
+
+.photo{
+    float: left;
+    height: 100%;
+    width: 30%;
+    border:red solid 1px;
+}
+.name{
+    
+      margin-left: 34%;
+      height: 50px;
+}
+.description{
+    margin-left: 32%;
+    height: 100px;
+}
+.price{
+    float:left;
+    height: 50px;
+    margin-left: 2%;
+    width: 30%;
+}
+.basket {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 600px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-dialog {
+    max-width: none;
+    width: 25%;
+}
+.totalPrice{
+    width: 100%;
+    text-align: right;
+    font-size: 200%;
+}

@@ -1,0 +1,24 @@
+.AdminOrder{
+    margin: auto;
+    width: 80%;
+    min-height: 200px;
+    border-bottom:black solid 1px;
+}
+.status{
+    text-align: center;
+    align-items: center;
+    margin-bottom: 2%;
+}
+.Shop{
+    width:100%;
+  }
+  .Items{
+      padding-top: 2%;
+      width:50%;
+      margin: auto;
+      max-width: 1000px;
+      background-color:#F8F8FF;
+      -webkit-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      -moz-box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+      box-shadow: 3px 9px 17px 3px rgba(159, 159, 173, 1);
+  }

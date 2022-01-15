@@ -1,0 +1,56 @@
+<div class="RegisterBox">
+    <div class="register">
+        <div class='form-Group' size="lg" >
+            <label>Email</label>
+            <input  class="form-control"
+              id="login"
+              type="email"
+              [(ngModel)]="email"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Hasło</label>
+            <input  class="form-control"
+              id="password"
+              type="password"
+              [(ngModel)]="password"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Powtórz hasło</label>
+            <input  class="form-control"
+              id="confirmPassword"
+              type="password"
+              [(ngModel)]="confirmPassword"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Imie</label>
+            <input  class="form-control"
+              id="name"
+              type="text"
+              [(ngModel)]="name"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Nazwisko</label>
+            <input  class="form-control"
+              id="surname"
+              type="text"
+              [(ngModel)]="surname"
+            />
+        </div>
+        <div class='form-Group' size="lg" >
+            <label>Numer telefonu</label>
+            <input  class="form-control"
+              id="phoneNumber"
+              type="text"
+              [(ngModel)]="phoneNumber"
+            />
+        </div>
+        <button (click)="register()" size="lg" class="btn btn-primary submit" type="submit">
+            Stwórz konto
+          </button>
+    </div>
+</div>
+
