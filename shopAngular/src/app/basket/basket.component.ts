@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import ProductsTest from "../../../../shopReact/src/Test_jsons/Products.json"
 import {HttpClient} from "@angular/common/http"
 
 @Component({

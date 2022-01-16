@@ -4,7 +4,6 @@ import "./order.css"
 function Order (props) {
 
 	return <div  className="or">
-        {console.log(props)}
 	<div className='date'><h2>Data zamówienia: {props["date"].slice(0,10) } </h2></div>
     <div className='status'>Stauts: {props["status"]}</div>
     <div className='cena'>Cena: {props["orderPrice"]} PLN</div>

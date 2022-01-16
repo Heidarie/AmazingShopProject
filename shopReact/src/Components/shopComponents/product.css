@@ -23,8 +23,13 @@
     height: 100px;
 }
 .price{
+    display: block;
     float:left;
     height: 50px;
     margin-left: 2%;
-    width: 30%;
+    width: 50%;
+}
+.stock{
+    width: 50%;
+    float: left;
 }

@@ -1,6 +1,5 @@
 import { Component } from "react";
 import "./orders.css"
-import OrderTest from "../../Test_jsons/Orders.json"
 import Order from "./Order"
 import axios from "axios";
 
@@ -23,7 +22,7 @@ class Orders extends Component{
                     }
                 )
                 .then(res => {
-                    console.log(`Success`);           
+                          
                     this.setState({
                       orders:res.data,
                       loading: false
@@ -38,15 +37,16 @@ class Orders extends Component{
     render(){
     return (       
       <div>
-        <h1>This is the Orders page</h1>
         {this.state.loading ? (
             <div>Loading...</div>
         ):
         <div className="Shop">
-          <div className="Items"> 
+          <div className="Items">
+            <h2 className="center">Twoje zamówienia</h2><hr/>
+            {this.state.orders.length==0?<p>You have no order history</p>:<div>
             {this.state.orders.map((val,key) => {
 		              return <Order key={key} klucz={key} {...val} />})}
-       
+       </div> }
           </div>
           
        </div>}

@@ -1,9 +1,7 @@
 import { Component } from "react";
-import ProductTest from "./Test_jsons/Products.json"
 import "./shop.css"
 import Product from "./Components/shopComponents/Product"
 import { Pagination,Form } from "react-bootstrap";
-import CategoriesTest from "./Test_jsons/Categories.json"
 import axios from "axios";
 
 class Shop extends Component{
@@ -29,8 +27,7 @@ class Shop extends Component{
                     }
                 )
                 .then(res => {
-                    console.log(`Success` );
-                    console.log(res.data)
+                   
                     prod=res.data
                 })
                 .catch(err => {
@@ -45,7 +42,7 @@ class Shop extends Component{
                     }
                 )
                 .then(res => {
-                    console.log(`Success`);
+                 
                     cate = res.data
                 })
                 .catch(err => {
@@ -94,7 +91,6 @@ class Shop extends Component{
   }
           )
           .then(res => {
-            console.log(`Success` );
             this.setState({
               products:res.data
             })
@@ -108,7 +104,6 @@ class Shop extends Component{
     }
   
  async sortProducts(event){
-   console.log(this.state.category)
     if(event.target.value===""){
     const url = "http://localhost:5232/api/Product/Products";
      await axios.get(url,{
@@ -121,7 +116,7 @@ class Shop extends Component{
                     }
                 )
                 .then(res => {
-                    console.log(`Success` );
+                  
                     this.setState({
                       products:res.data
                     })
@@ -139,7 +134,6 @@ class Shop extends Component{
   }
           )
           .then(res => {
-            console.log(`Success` );
             this.setState({
               products:res.data
             })
@@ -166,11 +160,8 @@ class Shop extends Component{
     }
 
     render(){
-     let pages =  Math.ceil(this.state.products.length/10)
-     let pagination = this.listPages(pages)
     return (       
       <div>
-        <h1>This is the SHOP page</h1>
         {this.state.loading ? (
             <div>Loading...</div>
         ):

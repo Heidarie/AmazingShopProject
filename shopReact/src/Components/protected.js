@@ -9,18 +9,23 @@ export function Protected(props) {
     let navigate = useNavigate();
     if(props.isAdmin){
         if(props.component=="AdminOrders"){
+              
         return (
-            <AdminOrders/>)
+            <AdminOrders/>
+            )
     }
     else{
         return(
-            <ProductForm/>
+            <ProductForm navigate={navigate}/>
         )
     }
 
 }
 else{
-    navigate("/", { replace: true });
+    return(<p>
+     You are not admin!
+    </p>
+    )
 }
    
 }

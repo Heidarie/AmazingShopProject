@@ -25,9 +25,9 @@ import axios from "axios";
                                   },                        
                               }
                           )
-                          .then(res => {
-                              console.log(`Success` + res.data);
-                              this.setState({validationMessage:""}) 
+                          .then(res => { 
+                              this.setState({validationMessage:""})
+                              this.props.navigate("/",{replace:true})
                           })
                           .catch(err => {
                               console.log(err);
@@ -50,9 +50,10 @@ import axios from "axios";
     return (
       <div className="change">
       <div className="password">
+        <h2>Zmień hasło</h2>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Group size="lg" >
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Stare hasło</Form.Label>
             <Form.Control
               id="password"
               type="password"
@@ -68,7 +69,7 @@ import axios from "axios";
             />
           </Form.Group>
           <Button  size="lg" className="submit" type="submit">
-            Login
+            Zmień
           </Button>
         </Form>
       </div></div>

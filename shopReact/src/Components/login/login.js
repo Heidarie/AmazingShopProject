@@ -30,8 +30,7 @@ import axios from 'axios';
                         },                    
                     }
                 )
-                .then(res => {
-                    console.log(`Success` + res.data);           
+                .then(res => {      
                      this.props.setAuth(true)  
                      this.props.navigate("/Shop", { replace: true });
                 })
@@ -56,7 +55,9 @@ import axios from 'axios';
   render(){
     return (
       <div className="LoginBox">
+        
       <div className="login">
+      <h2>Zaloguj się</h2>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Group size="lg" >
             <Form.Label>Email</Form.Label>

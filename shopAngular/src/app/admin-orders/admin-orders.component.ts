@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import OrdersTest from "../../../../shopReact/src/Test_jsons/Orders.json"
 import {HttpClient} from "@angular/common/http"
 @Component({
   selector: 'app-admin-orders',

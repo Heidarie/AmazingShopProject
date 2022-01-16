@@ -1,8 +1,6 @@
 import { Component } from "react";
 import { Form,Button } from "react-bootstrap";
 import "./ProductForm.css"
-import ProductsTest from "../../../Test_jsons/Products.json"
-import CategoriesTest from "../../../Test_jsons/Categories.json"
 import axios from "axios";
 
  class ProductForm extends Component{
@@ -32,9 +30,7 @@ import axios from "axios";
             },                    
         }
     )
-    .then(res => {
-        console.log(`Success` );
-        
+    .then(res => {      
         prod=res.data
     })
     .catch(err => {
@@ -49,7 +45,6 @@ await axios.get(urlCat,{
         }
     )
     .then(res => {
-        console.log(`Success`);
         cate = res.data
     })
     .catch(err => {
@@ -91,8 +86,6 @@ if(!error){
         formData.append('stockAmount',this.state.amount)
         formData.append('category',this.state.categoryId)
         formData.append('file',this.state.photo)
-
-        console.log(formData)
         axios.defaults.withCredentials=true;
         axios.post(url,formData,{
                           headers: {
@@ -101,7 +94,7 @@ if(!error){
                       }
                   )
                   .then(res => {
-                      console.log(`Success` + res.data);           
+                      this.props.navigate("/",{replace:true})         
                   })
                   .catch(err => {
                       console.log(err);
@@ -111,7 +104,6 @@ if(!error){
 
 
       }else{
-        console.log(this.state.productId+"&amount="+this.state.amount)
         const url = "http://localhost:5232/api/Product/AddProductAmount?id="+this.state.productId+"&amount="+this.state.amount;
                 axios.defaults.withCredentials=true;
                 axios.post(url,{
@@ -121,8 +113,7 @@ if(!error){
                               }
                           )
                           .then(res => {
-                              console.log(`Success` + res.data);
-                                  
+                              this.props.navigate("/",{replace:true})        
       
                           })
                           .catch(err => {
@@ -139,7 +130,6 @@ if(!error){
              
       }
       handleChangePhoto = (event) => {
-        console.log(event.target.files[0])
           this.setState({
             photo: event.target.files[0]
           })
@@ -185,7 +175,7 @@ if(!error){
             required
               id="price"
               type="number"
-              min="0.01"
+              min="1"
               onChange={this.handleChange.bind(this)}
             />
           </Form.Group>

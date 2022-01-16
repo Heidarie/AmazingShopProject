@@ -40,7 +40,6 @@ import axios from 'axios';
                     }
                 )
                 .then(res => {
-                    console.log(`Success` + res.data);
                     this.props.setAuth(true)  
                     this.props.navigate("/", { replace: true });
                 })
@@ -61,6 +60,7 @@ import axios from 'axios';
     return (
       <div className="RegisterBox">
       <div className="register">
+        <h2>Zarejestruj się</h2>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Group size="lg" >
             <Form.Label>Email</Form.Label>

@@ -29,7 +29,6 @@ import axios from 'axios';
       <NavDropdown title="Admin panel" id="basic-nav-dropdown">
           <NavDropdown.Item  as={NavLink} to="AdminOrders">Zamówienia</NavDropdown.Item>
           <NavDropdown.Item as={NavLink} to="ProductForm">Dodaj produkt</NavDropdown.Item>
-          <NavDropdown.Item as={NavLink} to="AddCategory">Dodaj kategorie</NavDropdown.Item>
       </NavDropdown>
       ):(<span></span>)}
       {props.isAuth ?(<>
@@ -37,11 +36,10 @@ import axios from 'axios';
           <NavDropdown.Item  as={NavLink} to="Orders">Zamówienia</NavDropdown.Item>
           <NavDropdown.Item as={NavLink} to="ChangePassword">Zmień hasło</NavDropdown.Item>
       </NavDropdown>
-        <Nav.Link as={NavLink} to="/Basket">Basket</Nav.Link>
+        <Nav.Link as={NavLink} to="/Basket">Koszyk</Nav.Link>
        
           <Button onClick={()=>{
            const url = "http://localhost:5232/api/Account/LogOff";
-           console.log(url)
            axios.defaults.withCredentials=true;
            axios.post(url,{},{
             headers: {
@@ -49,7 +47,7 @@ import axios from 'axios';
             },                    
                     })
                      .then(res => {
-                         console.log(`Success` + res.data);
+                    
                          props.setAuth(false)
                          props.setAdmin(false)
                          navigate("/", { replace: true });

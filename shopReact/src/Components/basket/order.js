@@ -34,7 +34,7 @@ class Order extends Component{
     <Modal.Header >
       <Modal.Title><p>Zamów</p>
       <Form.Select onChange={(e)=>this.changeDelivery(e.target.value)}>
-                <option value="">Odbiór</option>
+                <option value="">Wybierz odbiór</option>
                 <option value="0">Osobisty</option>
                 <option value="1">Kurier (za pobraniem)</option>
         </Form.Select>
@@ -48,26 +48,33 @@ class Order extends Component{
       <Form>
           <Form.Group className="mb-3" controlId="street">
             <Form.Label>Ulica</Form.Label>
-            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="Ulica" />
+            <Form.Control required type="text" onChange={this.handleChange.bind(this)} placeholder="Ulica" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="buildingNumber">
             <Form.Label>Numer budynku</Form.Label>
-            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="Numer budynku" />
+            <Form.Control required type="text" onChange={this.handleChange.bind(this)} placeholder="Numer budynku" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="postalCode">
             <Form.Label>Kod pocztowy</Form.Label>
-            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="kod" />
+            <Form.Control required type="text" onChange={this.handleChange.bind(this)} placeholder="kod" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="city">
             <Form.Label>Miasto</Form.Label>
-            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="Miasto" />
+            <Form.Control required type="text" onChange={this.handleChange.bind(this)} placeholder="Miasto" />
           </Form.Group>
     </Form>
     </div>):""}
       
   </Modal.Body>
   <Modal.Footer>
-  		<Button variant="primary" onClick={() => {
+  		<Button variant="primary" 
+      
+      disabled={
+        ((this.state.street.length==0)||(this.state.buildingNumber.length==0)||(this.state.city.length==0)
+        ||(this.state.postalCode.length==0)||(this.state.deliveryMethod==''))&&(this.state.deliveryMethod==1)
+        ||(this.state.deliveryMethod=="")  
+       }
+      onClick={() => {
             const url = "http://localhost:5232/api/Order/ConfirmOrder";
            
             axios.defaults.withCredentials=true;
@@ -78,7 +85,7 @@ class Order extends Component{
               "postalCode": this.state.postalCode,
               "deliveryType": this.state.deliveryMethod
             }
-            console.log(data)
+         
             axios.post(url,data,{
                               headers: {
                                 'Content-Type': 'application/json',                        
@@ -86,9 +93,9 @@ class Order extends Component{
                           }
                       )
                       .then(res => {
-                          console.log(`Success` + res.data);
                           this.setState({validationMessage:""})
-                          this.props.setTrigger(false)           
+                          this.props.setTrigger(false)
+                          this.props.navigate("/Orders", { replace: true });        
   
                       })
                       .catch(err => {

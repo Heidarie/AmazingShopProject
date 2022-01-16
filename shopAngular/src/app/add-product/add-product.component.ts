@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import CategoriesTest from "../../../../shopReact/src/Test_jsons/Categories.json"
-import ProductsTest from "../../../../shopReact/src/Test_jsons/Products.json"
+
 
 @Component({
   selector: 'app-add-product',

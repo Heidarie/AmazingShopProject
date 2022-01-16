@@ -9,18 +9,16 @@ function AdminOrders (props) {
         return () => setValue(value => value + 1); 
     }
     const changeStatus = (e)=>{
-        alert(props['orderId']+" "+e.target.value)
         const url = "http://localhost:5232/api/Order/ChangeOrderStatus?orderId="+props["orderId"]+"&status="+e.target.value;      
             axios.defaults.withCredentials=true;
             axios.post(url,{
                               headers: {
-                                'Content-Type': 'application/json',                        
+                                'Content-Type': 'application/json',                    
                               },                        
                           }
                       )
                       .then(res => {
-                          console.log(`Success` + res.data);
-                          ForceUpdate()         
+                            props.forceReload()         
   
                       })
                       .catch(err => {
@@ -30,7 +28,7 @@ function AdminOrders (props) {
 
 
 	return <div  className="AdminOrder">
-	<div className='date'><h2>Data zamówienia: {props["date"] } </h2></div>
+	<div className='date'><h2>Data zamówienia: {props["date"].slice(0,10) } </h2></div>
     <div className='status'>Stauts: {props["status"]}</div>
     <div className='cena'>Cena: {props["orderPrice"]} PLN</div>
     <ul className="list-group">

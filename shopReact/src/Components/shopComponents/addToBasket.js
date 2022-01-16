@@ -34,7 +34,7 @@ class AddToBasket extends Component{
         <Form.Label>Cena: {(Math.round(this.props.price * 100) / 100).toFixed(2)}PLN</Form.Label>
             <Form.Group className="mb-3" >
                 <Form.Label>Ilość:</Form.Label>
-                <input className="form-control" type="number" placeholder="1" min='1'  max="999" 
+                <input className="form-control" type="number" placeholder="1" min='1'  max={this.props.maxAmount} 
                                                         onChange={this.changeAmount.bind(this)} />
             </Form.Group>
             <div>{this.state.validationMessage}</div>
@@ -52,8 +52,7 @@ class AddToBasket extends Component{
                                   },                        
                               }
                           )
-                          .then(res => {
-                              console.log(`Success` + res.data);
+                          .then(res => {                        
                               this.setState({validationMessage:""})
                               this.props.setTrigger(false)           
       
