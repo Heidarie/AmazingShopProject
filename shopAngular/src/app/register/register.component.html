@@ -1,5 +1,6 @@
 <div class="RegisterBox">
     <div class="register">
+      <h3>Stwórz konto</h3>
         <div class='form-Group' size="lg" >
             <label>Email</label>
             <input  class="form-control"
@@ -48,7 +49,7 @@
               [(ngModel)]="phoneNumber"
             />
         </div>
-        <button (click)="register()" size="lg" class="btn btn-primary submit" type="submit">
+        <button (click)="register()" [disabled]="checkEmpty()" size="lg" class="btn btn-primary submit" type="submit">
             Stwórz konto
           </button>
     </div>

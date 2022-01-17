@@ -1,19 +1,22 @@
-<p>add-product works!</p>
 <div class="ProductBox">
     <div class="ProductForm">
-      <Form >
-        <h2>Typ przedmiotu</h2>
-      <select id="type" class='form-control' [(ngModel)]="itemType">
+      <h2>Dodaj przedmiot/stan magazynu</h2>
+      
+        <p>Typ przedmiotu</p>
+      <select id="type" class='form-control'name="type" [(ngModel)]="itemType">
         <option value="New">Nowy</option>
         <option value="Exsisting">Istniejący</option>
       </select>
-      </Form>
+      
       <div *ngIf="itemType=='New'">
+        <form ngNativeValidate (ngSubmit)="addProduct()">
         <div class='form-Group' size="lg" >
             <label>Nazwa</label>
             <input  class="form-control"
               id="name"
+              name="name"
               type="text"
+              required
               [(ngModel)]="name"
             />
         </div>
@@ -21,6 +24,8 @@
             <label>Opis</label>
             <input  class="form-control"
               id="description"
+              name="description"
+              required
               type="text"
               [(ngModel)]="description"
             />
@@ -29,7 +34,9 @@
             <label>Cena</label>
             <input  class="form-control"
               id="price"
-              type="text"
+              name="price"
+              required
+              type="number"
               [(ngModel)]="price"
             />
         </div>
@@ -37,6 +44,8 @@
             <label>Ilość</label>
             <input  class="form-control" min = '1' max='999'
               id="amount"
+              name="amount"
+              required
               type="number"
               [(ngModel)]="amount"
             />
@@ -44,35 +53,42 @@
             <div class='form-Group' size="lg" >
                 <label>Zdjęcie</label>
                 <input  class="form-control"
+                  required
+                  name="photo"
                   id="photo"
                   type="file"
-                  [(ngModel)]="photo"
+                  (change)="fileChangeEvent($event)"
                 />
                 </div>
                 <div class='form-Group' size="lg" >
                 <label>Kategoria</label>
-            <select class='form-control' id="categoryId" [(ngModel)]="category">
-
-                <option *ngFor="let cat of categories"  value={{cat.Categories_id}}>{{cat.Name}}</option>
-              </select>
+            <input type="text"  required class='form-control' name="category" id="categoryId" list="optionsList" [(ngModel)]="category"/>
+            <datalist id="optionsList" >
+                <option *ngFor="let cat of categories"  value="{{cat.name}}">{{cat.name}}</option>
+             </datalist>
               </div>
-
+              <button *ngIf="itemType=='New'" type="submit"  size="lg" class="btn btn-primary" type="submit">
+                Dodaj
+              </button>
+            </form>
       </div>
       <div *ngIf="itemType=='Exsisting'">
-        <select class='form-control' id="productId">
-          <option>Wybierz produkt</option>
-          <option *ngFor="let x of products" value={{x.Product_id}}>{{x.Name}}</option>
+        Wybierz produkt
+        <select [(ngModel)]="productId" class='form-control' id="productId">
+          <option value="">Wybierz produkt</option>
+          <option *ngFor="let x of products"  value={{x.value}}>{{x.key}}</option>
         </select>
         <div class='form-Group' size="lg" >
             <label>Ilość</label>
             <input  class="form-control" min = '1' max='999'
               id="amount"
+              required
               type="number"
               [(ngModel)]="amount"
             />
             </div>
       </div>
-      <button  size="lg" class="btn btn-primary" type="submit">
+      <button *ngIf="itemType=='Exsisting'" (click)="addProduct()"  size="lg" class="btn btn-primary" type="submit">
         Dodaj
       </button>
     </div>

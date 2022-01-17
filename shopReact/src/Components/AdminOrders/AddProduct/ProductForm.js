@@ -71,14 +71,6 @@ if(!error){
       if(this.state.type=="New"){
         const url = "http://localhost:5232/api/Product/AddProduct";
     
-           const data= {
-         name: this.state.name,
-        price: this.state.price,
-        description: this.state.description,
-        stockAmount: this.state.amount,
-        category: this.state.categoryId,
-        file:this.state.photo
-     }
         const formData = new FormData()
         formData.append('name',this.state.name)
         formData.append('price',this.state.price)
@@ -128,6 +120,7 @@ if(!error){
         this.setState({...this.state,
              [e.target.id]: e.target.value });
              
+             
       }
       handleChangePhoto = (event) => {
           this.setState({
@@ -139,6 +132,7 @@ if(!error){
     return (
       <div className="ProductBox">
       <div className="ProductForm">
+        <h2>Dodaj przedmiot/stan magazynu</h2>
           <Form.Group>
             <Form.Label>Typ przedmiotu</Form.Label>
         <Form.Select id="type" onChange={this.handleChange.bind(this)}>

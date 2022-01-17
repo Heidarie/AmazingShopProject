@@ -16,6 +16,16 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 changePassword(){
+  this.http.get<any>('http://localhost:5232/api/Account/IsUserLogged', { withCredentials: true,
+}).subscribe({
+  next: data => {  
+ },
+
+error: error => {
+   console.error('There was an error!', error);
+   this.router.navigate(['/Login']);
+}})
+
   const headers = {'Content-Type': 'application/json',};
   
   this.http.post<any>("http://localhost:5232/api/Account/ChangeUserPassword?oldPassword="+this.password+"&newPassword="+this.newPassword,
@@ -29,5 +39,12 @@ error: error => {
     console.error('There was an error!', error);
 }})
  }
+ checkEmpty()
+{
+  if(this.password.length==0 || this.newPassword.length==0){
+    return true
+  }
+  return false
+}
 }
 

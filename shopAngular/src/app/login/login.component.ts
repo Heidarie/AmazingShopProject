@@ -14,7 +14,15 @@ export class LoginComponent implements OnInit {
   constructor(private http:HttpClient,private router:Router,) { }
 
   ngOnInit(): void {
-    
+    this.http.get<any>('http://localhost:5232/api/Account/IsUserLogged', { withCredentials: true,
+   }).subscribe({
+     next: data => {
+      window.location.href='/'
+    },
+  
+  error: error => {
+      console.error('There was an error!', error);
+  }})
   }
  login(){
   const headers = {'Content-Type': 'application/json',};
@@ -31,6 +39,13 @@ export class LoginComponent implements OnInit {
 
 error: error => {
     console.error('There was an error!', error);
+    alert("Złe dane")
 }})
+ }
+ checkEmpty(){
+   if((this.email.length==0)||this.password.length==0){
+     return true
+   }
+   return false
  }
 }

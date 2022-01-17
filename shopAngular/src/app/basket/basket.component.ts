@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http"
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
@@ -17,16 +17,30 @@ export class BasketComponent implements OnInit {
   city = ''
   sort = 'none'
   products!: any[]
+  anyChecked = false
   checked:any[] = []
+  
   empty= false
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {  
+    this.http.get<any>('http://localhost:5232/api/Account/IsUserLogged', { withCredentials: true,
+  }).subscribe({
+    next: data => {  
+   },
+  
+  error: error => {
+     console.error('There was an error!', error);
+     this.router.navigate(['/Login']);
+  }})  
     this.http.get<any>('http://localhost:5232/api/Order/GetOrderedProducts', {withCredentials:true}).subscribe({
     next: data => {
        this.products = data.products
        this.loading=false
+       if(this.products.length==0){
+         this.empty=true
+       }
        this.products.map(x=>this.checked.push({id:x.id,checked:true}))
 
    },
@@ -40,10 +54,7 @@ export class BasketComponent implements OnInit {
     this.display=val
     this.displayProduct = product
   }
-  checkAll(){
-    
-    console.log(this.checked)
-  }
+
   getTotalPrice(){
     if(this.checked){
     var price =0;
@@ -53,9 +64,15 @@ export class BasketComponent implements OnInit {
     return null
   }
   changeCheck(id:any){
-   var index =  this.checked.findIndex(x=>x.id==id)
+    var checkedNumber = 0
+   var index = this.checked.findIndex(x=>x.id==id)
 
     this.checked[index].checked=!this.checked[index].checked
+    this.checked.map(x=>{if(x.checked==true){checkedNumber+=1}})
+    if(checkedNumber>0){
+      this.anyChecked = false
+    }
+    else{this.anyChecked = true}
   }
   deleteChecked(){
     var checkedItems:any [] = []
@@ -64,7 +81,7 @@ export class BasketComponent implements OnInit {
     }})
     this.http.post<any>('http://localhost:5232/api/Order/DeleteProductsFromBasket', checkedItems,{withCredentials:true}).subscribe({
       next: data => {
-
+        this.router.navigate(['/']);
      },
      error: error => {
        console.error('There was an error!', error);
@@ -81,9 +98,18 @@ export class BasketComponent implements OnInit {
     this.http.post<any>('http://localhost:5232/api/Order/ConfirmOrder', data,{withCredentials:true}).subscribe({
       next: data => {
               this.display = false
+              this.router.navigate(['/Orders']);
      },
      error: error => {
        console.error('There was an error!', error);
    }})
   }
+checkForm(){
+  if(this.deliveryType=="1"){
+    if((this.postal.length==0)||(this.street.length==0)||(this.houseNumber.length==0)||(this.city.length==0)){
+      return true
+    }
+  }
+  return false
+}
 }

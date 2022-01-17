@@ -8,6 +8,7 @@ function Product (props) {
     const [display, setDisplay] = useState(false);
     
 	return <div  className="product">
+        
     <div className='photo'><img src={`data:image/jpeg;base64,${props['image']}`} className='img-fluid shadow-4' alt='...' /></div>
 	<div className='name'><h2>{ props["name"] } </h2></div>
     <div className='description'>{props["description"]}</div>

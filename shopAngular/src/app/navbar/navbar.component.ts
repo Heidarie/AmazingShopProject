@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input, NgZone} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http"
 import {Router} from '@angular/router';
 @Component({
@@ -11,13 +11,12 @@ export class NavbarComponent implements OnInit {
   isLogged = false;
   isAdmin = false
   name=''
-  constructor(private http:HttpClient,private router:Router,private zone: NgZone) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
   ngOnInit() {
     this.http.get<any>('http://localhost:5232/api/Account/IsUserLogged', { withCredentials: true,
    }).subscribe({
      next: data => {
-        console.log(data)
         this.isLogged=true
         if(data.name=="admin"){
           this.isAdmin=true
@@ -35,7 +34,6 @@ logOut(){
   
   this.http.post<any>('http://localhost:5232/api/Account/LogOff', { },{ withCredentials: true }).subscribe({
     next: data => {
-       console.log(data)
       this.router.navigateByUrl('/Refresh', { skipLocationChange: true }).then(() => {
         this.isLogged=false
         this.isAdmin = false

@@ -9,20 +9,22 @@ import {HttpClient} from "@angular/common/http"
 export class ShopComponent implements OnInit {
   displayProduct:any
   display = false
-  loading = false;
+  loading = true;
   products:any
   categories:any
   sort = ""
   amount = 1
   category:any= ""
+  logged = false
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
 
   this.http.get<any>('http://localhost:5232/api/Product/Products', { }).subscribe({
      next: data => {
-        console.log(data)
+       
         this.products = data
+        this.loading = false
     },
   
   error: error => {
@@ -30,7 +32,7 @@ export class ShopComponent implements OnInit {
   }})
   this.http.get<any>('http://localhost:5232/api/Product/GetCategories', { }).subscribe({
     next: data => {
-       console.log(data)
+       
        this.categories = data
    },
  
@@ -38,8 +40,21 @@ export class ShopComponent implements OnInit {
      console.error('There was an error!', error);
  }})
   
- }
+ this.http.get<any>('http://localhost:5232/api/Account/IsUserLogged', { withCredentials: true,}).subscribe({
+  next: data => {
+    this.logged = true
+ },
 
+error: error => {
+  
+}})
+
+
+
+ }
+  isLogged(){
+     return this.logged
+  }
   getCategories(categoryId:any){
     this.http.get<any>('http://localhost:5232/api/Product/GetSelectedCategoryProduct', {
       headers: {
@@ -50,7 +65,7 @@ export class ShopComponent implements OnInit {
       }}             
   ).subscribe({
     next: data => {
-       console.log(data)
+     
        this.products = data
        this.category = categoryId
    },
@@ -66,7 +81,6 @@ export class ShopComponent implements OnInit {
       }}             
   ).subscribe({
     next: data => {
-       console.log(data)
        this.products = data
    },
  
@@ -74,6 +88,10 @@ export class ShopComponent implements OnInit {
      console.error('There was an error!', error);
  }})
   }
+  getImage(image:any){
+    return `data:image/jpeg;base64,${image}`
+  }
+
   setDisplay(val:boolean,product:any){
     this.display=val
     this.amount= 1
@@ -82,8 +100,11 @@ export class ShopComponent implements OnInit {
   getDecimalNumber(num:number){
     return (Math.round(num * 100) / 100).toFixed(2)
   }
+  getMax(product:any){
+    return product.stockAmount
+  }
   addToBasket(id:any){
-    console.log(id)
+  
   const headers = {'Content-Type': 'application/json',}
   this.http.post<any>("http://localhost:5232/api/Order/AddToBasket?productId="+id+"&amount="+this.amount, 
   {}, { headers,withCredentials: true }).subscribe({

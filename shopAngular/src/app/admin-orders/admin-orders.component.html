@@ -1,12 +1,13 @@
-<p>admin-orders works!</p>
 <div *ngIf="loading">
     Loading...
 </div>
 <div *ngIf="!loading">
     <div class="Shop">
         <div class="Items">
+            <h2>Wszystkie zamówienia</h2>
+            <hr/>
             <div class="AdminOrder" *ngFor="let order of orders">
-                <div class='date'><h2>Data zamówienia: {{order.date}} </h2></div>
+                <div class='date'><h2>Data zamówienia: {{order.date.slice(0,10)}} </h2></div>
                 <div class='status'>Stauts: {{order.status}}</div>
                 <div class='cena'>Cena: {{getDecimalNumber(order.orderPrice)}} PLN</div>
                 <ul class="list-group">

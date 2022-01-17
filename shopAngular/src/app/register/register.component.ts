@@ -30,12 +30,20 @@ export class RegisterComponent implements OnInit {
     
     this.http.post<any>('http://localhost:5232/api/Account/Register', body, { headers,withCredentials: true }).subscribe({
      next: data => {
-        console.log(data)
         this.router.navigate(['/']);
     },
   
   error: error => {
       console.error('There was an error!', error);
   }})
+  }
+
+  checkEmpty(){
+    if((this.email.length==0)||(this.password.length==0)
+    ||(this.name.length==0)||(this.surname.length==0)
+    ||(this.phoneNumber.length==0)){
+      return true
+    }
+    return false
   }
 }

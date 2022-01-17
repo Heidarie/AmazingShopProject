@@ -1,5 +1,6 @@
 <div class="LoginBox">
     <div class="login">
+      <h2>Zaloguj się</h2>
         <div class='form-Group' size="lg" >
             <label>Email</label>
             <input  class="form-control"
@@ -16,7 +17,7 @@
               [(ngModel)]="password"
             />
         </div>
-        <button  size="lg" (click)="login()" class="btn btn-primary submit" type="submit">
+        <button  size="lg" (click)="login()" [disabled]="checkEmpty()" class="btn btn-primary submit" type="submit">
             Zaloguj
           </button>
     </div>

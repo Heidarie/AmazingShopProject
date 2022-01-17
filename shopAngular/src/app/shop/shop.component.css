@@ -52,7 +52,7 @@
   .product{
     margin: auto;
     width: 80%;
-    height: 200px;
+    height: 300px;
     border-bottom:black solid 1px;
 }
 .product:hover{
@@ -63,7 +63,7 @@
     float: left;
     height: 100%;
     width: 30%;
-    border:red solid 1px;
+
 }
 .name{
     
@@ -75,10 +75,11 @@
     height: 100px;
 }
 .price{
+    display: block;
     float:left;
     height: 50px;
     margin-left: 2%;
-    width: 30%;
+    width: 50%;
 }
 .basket {
     position: fixed;
@@ -101,4 +102,8 @@
     width: 100%;
     text-align: right;
     font-size: 200%;
+}
+.stock{
+    width: 50%;
+    float: left;
 }

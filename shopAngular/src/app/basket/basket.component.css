@@ -76,7 +76,7 @@
     float: left;
     height: 100%;
     width: 30%;
-    border:red solid 1px;
+
 }
 .name{
     
@@ -92,4 +92,7 @@
     height: 50px;
     margin-left: 2%;
     width: 30%;
+}
+h2{
+    text-align: center;
 }
